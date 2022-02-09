@@ -1,0 +1,15 @@
+__pycache__
+
+# gan model
+*.pb
+
+# user-data
+static/models
+static/user_data
+static/materials
+static/fonts/*
+
+# test images
+image_process/*.jpg
+image_process/*.png
+

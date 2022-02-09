@@ -1,0 +1,122 @@
+.console-material {
+    margin: 15px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============ Buttons ================= */
+
+.materials-btns{
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    margin-top: 10px;
+}
+
+.materials-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 55px;
+    height: 30px;
+
+    /* border-style: solid;
+    border-width: 0.5px;
+    border-color: whitesmoke;*/
+    border-radius: 5px; 
+    margin: 5px;
+}
+
+.materials-btn-container:hover {
+    background-color: #2f437e !important;
+}
+
+.materials-btn-container .materials-btn .text {
+    font-size: 10px;
+}
+/* Layout Generation */
+
+.material-recommand{
+    margin: 15px 0px;
+}
+
+.material-recommand span {
+    color: white;
+}
+
+.recommand-result {
+    display: flex;
+    flex-direction: row;
+    align-items:  center;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+}
+
+/* Color Generation */
+
+.material-used {
+    margin: 15px 0px;
+}
+
+.material-used span{
+    color: white;
+}
+
+.used-result {
+    display: flex;
+    flex-direction: row;
+    align-items:  center;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+}
+
+/* Material Editing */
+
+.material-edit {
+    margin: 15px 0px;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+
+}
+
+.material-edit span {
+    color: white;
+}
+
+.edit-options {
+    font-size: 12px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 10px 0px;
+}
+
+.edit-options .edit-option {
+    width: 96%;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Material Upload */
+
+.material-upload {
+    margin: 15px 0px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.material-upload span {
+    color: white;
+}
