@@ -14,13 +14,14 @@
 .hover-text {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 
     height: 80px;
     width: 80px;
     border-radius: 5px;
     margin: 2px;
 
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.6);
 
     position: absolute;
     top: 0;
@@ -32,6 +33,7 @@
     margin: 5px;
     font-size: 13px;
     color: rgb(5, 5, 5);
+    cursor: default;
 }
 
 .hover-text .prompt {
@@ -39,10 +41,13 @@
     margin: 5px;
     font-size: 10px;
 
-    padding-top: 20px;
+    /* padding-top: 20px; */
 
     color: gray;
     text-decoration: underline;
+
+    cursor: default;
+
 
 }
 

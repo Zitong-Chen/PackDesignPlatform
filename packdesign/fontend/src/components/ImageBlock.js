@@ -39,10 +39,12 @@ class ImageBlock extends Component {
                 onMouseEnter={this.handleOnMouseEnter}
                 onMouseLeave={this.handleOnMouseLeave}
                 onClick={this.props.onClick}>
-                <div className='img-block' style={this.props.style}>
+                <div className='img-block' style={{width:`${this.props.width}`,height:`${this.props.height}`}}>
                     <img src={this.props.img}/>
                     { this.state.isPromptHover && this.state.isHover &&
-                        <div className='hover-text' style={{left:`${this.state.left}`, top:`${this.state.top}`}}>
+                        <div className='hover-text' 
+                        style={{left:`${this.state.left}`, top:`${this.state.top}`,
+                        width:`${this.props.width}`,height:`${this.props.height}`}}>
                             <span className='title'>{this.props.title}</span>
                             <span className='prompt'>{this.props.prompt}</span>
                         </div>
@@ -50,7 +52,8 @@ class ImageBlock extends Component {
                 </div>
                 {  !this.state.isPromptHover && this.state.isHover && 
                     <InfoCard top={this.state.top} left={this.state.right}
-                    title={this.props.title} prompt={this.props.prompt}/>
+                    title={this.props.title} prompt={this.props.prompt}
+                    width={this.props.width} height={this.props.height}/>
                 }
             </div>
         );

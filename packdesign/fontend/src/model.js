@@ -28,6 +28,13 @@ export default class UserModel {
             url: "",
             // transport params
         }
+
+        this.materials = {
+            type_num: 0,
+            type_name: [],
+            type_urls:[],
+            urls:[],
+        }
     }
 
     // get isExist() {
@@ -174,5 +181,39 @@ export default class UserModel {
 
     set img_src(new_src) {
         this.design_setting.url = new_src;
+    }
+
+    // ===========materials setting============
+
+    get materials_types() {
+        return this.materials.type_num;
+    }
+
+    set materials_types(new_types) {
+        this.materials.type_num = new_types;
+    }
+
+    get materials_names() {
+        return this.materials.type_name;
+    }
+
+    set materials_names(new_names) {
+        this.materials.type_name = new_names;
+    }
+
+    get materials_nums() {
+        return this.materials.type_urls;
+    }
+
+    set materials_nums(new_nums) {
+        this.materials.type_urls = new_nums;
+    }
+
+    get materials_urls() {
+        return this.materials.urls;
+    }
+
+    set materials_urls(new_urls) {
+        this.materials.urls = new_urls;
     }
 }

@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useReducer, useState} from 'react';
 import ReactDOM, { render } from 'react-dom';
 // import Slider from 'react-native'
 import './index.css';
@@ -139,6 +139,12 @@ class Body extends Component {
 const userModel = new UserModel();
 // userModel.isExist = true;
 userModel.img_src = 'static/black.jpg'
+
+userModel.materials_types = 1;
+userModel.materials_names = ["老虎"];
+userModel.materials_nums = [0, 4]; // accumulated urls, nums
+userModel.materials_urls = ['static/materials/tiger/1.png','static/materials/tiger/2.png',
+'static/materials/tiger/3.png','static/materials/tiger/4.png'];
 
 ReactDOM.render(
   <Body model={userModel}/>,

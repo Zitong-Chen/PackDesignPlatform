@@ -16,6 +16,7 @@ import ColorIcon from './icons/icon-color.png'
 import PenIcon from './icons/icon-pen.png'
 import LayoutTab from './LayoutTab';
 import MaterialTab from './MaterialTab';
+import { PrototypeTab } from './PrototypeTab';
 
 
 /* ============ Tab Buttons ================= */
@@ -95,10 +96,7 @@ class OptionTabs extends Component {
                 </div>
 
                 <div icon={TempIcon} label='样机' textColor='white' tabName='console-temp'>
-                    <div style={{display:'flex', flexDirection:'row'}}>
-                        <ImageBlock img={img} title='Block1' prompt='undifine'/>
-                        <ImageBlock img={img} title='Block2' prompt='undifine' isPromptHover={false}/>
-                    </div>
+                    <PrototypeTab />
                 </div>
 
                 <div icon={StyleIcon} label='模版' textColor='white' tabName='console-layout'>

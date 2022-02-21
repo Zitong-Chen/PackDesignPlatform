@@ -16,9 +16,6 @@ import BlackIcon from './icons/black.jpg'
 
 // import styled from 'styled-components';
 
-
-
-
 /* ============ Style Buttons ================= */
 class StyleBtn extends Component {
     render() {
@@ -31,67 +28,6 @@ class StyleBtn extends Component {
                 </div>
             </div>
         );
-    }
-}
-
-/* ============ Tab Buttons ================= */
-class TabBtn extends Component {
-    render() {
-        return (
-            <div className='style-tab-btn-container' onClick={this.props.onClick}
-            style={{backgroundColor:this.props.backgroundColor}} >
-                <div className='style-tab-btn' >
-                    <div className='text' style={{color:this.props.textColor, cursor:'default'}}>{this.props.value}</div>
-                </div>
-            </div>
-        );
-    }
-}
-
-/* ============ Tab Contents ================= */
-class TabContent extends Component {
-    static propTypes = {
-        children: PropTypes.instanceOf(Array).isRequired
-    }
-    
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            activeTab: this.props.children[0].props.tabName,
-        };
-    }
-
-    handleOnClick = (tabName) => {
-        this.setState({
-            activeTab: tabName,
-        });
-    }
-
-    render() {
-        const items = this.props.children;
-        return (
-            <div className='console-style'>
-                <div className='style-tab-btns'>
-                    {items.map((item, idx)=>{
-                        return (
-                        <TabBtn 
-                        key={idx} 
-                        onClick={() => this.handleOnClick(item.props.tabName)} 
-                        value={item.props.label} 
-                        textColor={item.props.textColor}
-                        backgroundColor={this.state.activeTab === item.props.tabName?'#2f437e':'#1d3068'}/>)
-                    })}
-                </div>
-                <div className='style-tab-contents'>
-                    {items.map((item, idx)=>{
-                        return (<div className={item.props.className} 
-                            key={idx} 
-                            style={{display:this.state.activeTab===item.props.tabName?'':'none'}}>{item.props.children}</div>);
-                    })}
-                </div>
-            </div>
-        )
     }
 }
 
@@ -209,81 +145,42 @@ class StyleTab extends Component {
 
     handleUploadSuccess = (new_upload_img) => {
         console.log(new_upload_img);
-        console.log("Before Upload:",this.props.model);
-
         this.props.model.upload_img_url = new_upload_img;
-        console.log("After Upload:", this.props.model)
     }
 
     render() {
         return (
-            <TabContent>
-                <div label='纯色背景' textColor='white' tabName='color-style' className='color-style-control'>
-                    <div style={{display:'flex', flexDirection:'column'}} >
-                        <div className='r-channel'>
-                            <ControlSlider min={0} max={255} color='white' title='R通道' 
-                            percentage={false} handleChangeValue={this.handleChange_R}/>
+            <div style={{display:'flex', flexDirection:'column'}} >
+                <div className='console-style'>
+                    <span style={{color:'white'}}>风格选择</span>
+                    <div className='style-btns'>
+                        <StyleBtn value='渲染' textColor='white' backgroundColor='#1d3068' onClick={()=>this.generateDesign(1)}/>
+                        <StyleBtn value='抽象' textColor='white' backgroundColor='#1d3068' onClick={()=>this.generateDesign(2)} />
 
-                        </div>
-                        <div className='g-channel'>
-                            <ControlSlider min={0} max={255} color='white' title='G通道' 
-                            percentage={false}  handleChangeValue={this.handleChange_G}/>
-
-                        </div>
-                        <div className='b-channel'>
-                            <ControlSlider min={0} max={255} color='white' title='B通道' 
-                            percentage={false}  handleChangeValue={this.handleChange_B}/>
-                        </div>
-                        <div className='color-preview' style={{marginTop:'15px', marginRight:'20px', 
-                        display:'flex', justifyContent:'right'}}>
-                            <ImageBlock title='纯色图片' prompt='点击预览效果' img={this.state.color_img} 
-                            onClick={() => this.onImageClick(this.state.color_img)}/>
+                    </div>
+                    <div className='style-generate'>
+                        <div className='generate-img-block' >
+                            {
+                            this.state.style_imgs.map((style_img, index) => {
+                                return <ImageBlock key={index} img={style_img} title={'生成图片'+(index+1)} 
+                                prompt='点击预览效果' onClick={() => this.onImageClick(style_img)}/>
+                            })
+                            }
                         </div>
                     </div>
-                </div>
-
-                <div label='智能生成' textColor='white' tabName='gan-style' className='gan-style-control'>
-                    <div style={{display:'flex', flexDirection:'column'}} >
-                        
-                            <span style={{color:'white'}}>风格选择</span>
-                            <div className='style-btns'>
-                                <StyleBtn value='渲染' textColor='white' backgroundColor='#1d3068' onClick={()=>this.generateDesign(1)}/>
-                                <StyleBtn value='抽象' textColor='white' backgroundColor='#1d3068' onClick={()=>this.generateDesign(2)} />
-
-                            </div>
-                            <div className='style-generate'>
-                                <div className='generate-img-block' >
-                                    {
-                                    this.state.style_imgs.map((style_img, index) => {
-                                        return <ImageBlock key={index} img={style_img} title={'生成图片'+(index+1)} 
-                                        prompt='点击预览效果' onClick={() => this.onImageClick(style_img)}/>
-                                    })
-                                    }
-                                </div>
-                            </div>
-                            <div style={{width:'100%',
-                            height:'1px',
-                            backgroundColor:'rgba(255,255,255,0.3)',
-                            marginBottom:"25px"}}></div>
-                            <span style={{color:'white'}}>风格细调</span>
-                            <div className='style-adjust'>
-                                <ControlSlider min={0} max={100} color='white' title='模糊' percentage={true}/>
-                                <ControlSlider min={0} max={100} color='white' title='抽象' percentage={true}/>
-                                <ControlSlider min={0} max={100} color='white' title='颗粒大小' percentage={true}/>
-                                <ControlSlider min={0} max={100} color='white' title='透明' percentage={true}/>
-                            </div>
-                        
+                    <div style={{width:'100%',
+                    height:'1px',
+                    backgroundColor:'rgba(255,255,255,0.3)',
+                    marginBottom:"25px"}}></div>
+                    <span style={{color:'white'}}>风格细调</span>
+                    <div className='style-adjust'>
+                        <ControlSlider min={0} max={100} color='white' title='模糊' percentage={true}/>
+                        <ControlSlider min={0} max={100} color='white' title='抽象' percentage={true}/>
+                        <ControlSlider min={0} max={100} color='white' title='颗粒大小' percentage={true}/>
+                        <ControlSlider min={0} max={100} color='white' title='透明' percentage={true}/>
                     </div>
                 </div>
-
-                <div label='本地上传' textColor='white' tabName='upload-style' className='upload-style-control'>
-                    <UploadComponent icon={CameraIcon} text='点击上传照片' width='90%' 
-                    height='100px' borderWidth='2px' borderStyle='dashed' textColor='white'
-                    onPreviewImageClick={this.onImageClick} uploadUrl='/upload' preview={true} 
-                    onUploadSuccess={this.handleUploadSuccess}/>
-                </div>
-
-            </TabContent>
+            </div>
         )
     }
 }

@@ -27,11 +27,24 @@ class StyleBtn extends Component {
 class MaterialTab extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            layout_res: this.props.model.template_result,
-            layout_state:false,
-            color_res: this.props.model.color_result,
+            materials_types: this.props.model.materials_types,
+            selected_index: 0,
+            materials_names: this.props.model.materials_names,
+            materials_urls: this.getMaterialsUrls(0),
+            used_urls:[],
         }
+
+        console.log(this.state)
+    }
+
+    getMaterialsUrls = (index) => {
+        let selected_urls = [];
+        for(let i = this.props.model.materials_nums[index]; i < this.props.model.materials_nums[index + 1]; ++i) {
+            selected_urls.push(this.props.model.materials_urls[i]);
+        }
+        return selected_urls
     }
 
     handleoOnPreviewImageClick = () => {
@@ -40,6 +53,29 @@ class MaterialTab extends Component {
 
     handleOnUploadSuccess = () => {
         alert('Upload success!');
+    }
+
+    handleOnSelectedNewMaterials = (index) => {
+        if(index >= 0 && index < this.props.model.materials_types) {
+            this.setState({
+                selected_index: index,
+                materials_urls: this.getMaterialsUrls(index),
+            });
+        }
+    }
+
+    handleOnMaterialsClick = (material) => {
+        let history = this.state.used_urls;
+        let new_records = [];
+        new_records.push(material);
+        let max_history = 3;
+        for(let i = 0; i < history.length && i < max_history - 1; ++i) {
+            new_records.push(history[i]);
+        }
+
+        this.setState({
+            used_urls: new_records,
+        })
     }
 
 
@@ -51,15 +87,15 @@ class MaterialTab extends Component {
                         <span>智能推荐</span>
                     </div>
                     <div className='materials-btns'>
-                        <StyleBtn value='动物' textColor='white' backgroundColor='#1d3068' onClick={()=>{}}/>
-                        <StyleBtn value='雪花' textColor='white' backgroundColor='#1d3068' onClick={()=>{}} />
-
+                        {this.state.materials_names.map((name, index) => {
+                            return <StyleBtn key={index} value={name} textColor='white' backgroundColor='#1d3068'
+                            onClick={() => this.handleOnSelectedNewMaterials(index)}/>
+                        })}
                     </div>
                     <div className='recommand-result'>
-                        <ImageBlock img={CameraIcon} title='1' prompt='2' onClick={() => {}}/>
-                        {this.state.layout_res.map((layout_img, index) => {
-                            return <ImageBlock key={index} img={layout_img} title={'布局'+(index+1)} 
-                            prompt='点击选择及预览布局' onClick={() => this.handleOnTemplateClick(layout_img)}/>
+                        {this.state.materials_urls.map((materials, index) => {
+                            return <ImageBlock key={index} img={materials} title={'素材'+(index+1)} 
+                            prompt='推荐素材' onClick={() => this.handleOnMaterialsClick(materials)}/>
                         })}
                     </div>
                 </div>
@@ -74,7 +110,10 @@ class MaterialTab extends Component {
                         <span>最近使用</span>
                     </div>
                     <div className='used-result'>
-                        <ImageBlock img={CameraIcon} title='1' prompt='2' onClick={() => {}}/>
+                    {this.state.used_urls.map((materials, index) => {
+                            return <ImageBlock key={index} img={materials} title={'最近使用'+(index+1)} 
+                            prompt='最近使用素材' onClick={() => {}}/>
+                        })}
                     </div>
                 </div>
 
