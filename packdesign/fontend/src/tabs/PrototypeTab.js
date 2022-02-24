@@ -2,7 +2,7 @@ import React, {Component, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import "./PrototypeTab.css"
-import ImageBlock from './components/ImageBlock';
+import ImageBlock from '../components/ImageBlock';
 
 /* ============ Style Buttons ================= */
 class StyleBtn extends Component {

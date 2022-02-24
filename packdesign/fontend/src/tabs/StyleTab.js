@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 // import Slider, {Range} from 'rc-slider'
 // import 'rc-slider/assets/index.css';
 
-import ControlSlider from './components/rc-slider';
+import ControlSlider from '../components/rc-slider';
 
-import ImageBlock from './components/ImageBlock';
-import UploadComponent from './components/UploadComponent';
+import ImageBlock from '../components/ImageBlock';
+import UploadComponent from '../components/UploadComponent';
 import './StyleTab.css'
 
-import CameraIcon from './icons/camera.png'
-import BlackIcon from './icons/black.jpg'
+import CameraIcon from '../icons/camera.png'
+import BlackIcon from '../icons/black.jpg'
 
 
 // import styled from 'styled-components';

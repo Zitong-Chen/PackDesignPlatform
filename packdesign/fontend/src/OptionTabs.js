@@ -5,7 +5,11 @@ import './OptionTabs.css';
 
 import Slider from './components/Slider'
 import ImageBlock from './components/ImageBlock'
-import StyleTab from './StyleTab'
+import StyleTab from './tabs/StyleTab'
+import LayoutTab from './tabs/LayoutTab';
+import MaterialTab from './tabs/MaterialTab';
+import PrototypeTab from './tabs/PrototypeTab';
+import ShapeTab from './tabs/ShapeTab';
 
 import img from './icons/magic-wand.png'
 import StarIcon from './icons/icon-star.png'
@@ -14,10 +18,6 @@ import TempIcon from './icons/icon-temp.png'
 import PicIcon from './icons/icon-pic.png'
 import ColorIcon from './icons/icon-color.png'
 import PenIcon from './icons/icon-pen.png'
-import LayoutTab from './LayoutTab';
-import MaterialTab from './MaterialTab';
-import PrototypeTab from './PrototypeTab';
-import ShapeTab from './ShapeTab';
 
 
 /* ============ Tab Buttons ================= */

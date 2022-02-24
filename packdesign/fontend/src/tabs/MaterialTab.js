@@ -1,12 +1,12 @@
 import React, {Component, useState} from 'react';
 import PropTypes from 'prop-types';
 
-import ImageBlock from './components/ImageBlock'
-import UploadComponent from './components/UploadComponent';
-import ControlSlider from './components/rc-slider';
+import ImageBlock from '../components/ImageBlock'
+import UploadComponent from '../components/UploadComponent';
+import ControlSlider from '../components/rc-slider';
 import './MaterialTab.css'
 
-import CameraIcon from './icons/camera.png'
+import CameraIcon from '../icons/camera.png'
 
 /* ============ Style Buttons ================= */
 class StyleBtn extends Component {

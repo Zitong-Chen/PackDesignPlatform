@@ -1,12 +1,12 @@
 import React, {Component, useState} from 'react';
 import PropTypes from 'prop-types';
 
-import ImageBlock from './components/ImageBlock'
-import UploadComponent from './components/UploadComponent';
+import ImageBlock from '../components/ImageBlock'
+import UploadComponent from '../components/UploadComponent';
 import './LayoutTab.css'
 
-import CameraIcon from './icons/camera.png'
-import BlackIcon from './icons/black.jpg'
+import CameraIcon from '../icons/camera.png'
+import BlackIcon from '../icons/black.jpg'
 
 // =========== Layout Tab ===============
 class LayoutTab extends Component {

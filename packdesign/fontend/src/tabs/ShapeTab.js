@@ -2,15 +2,15 @@ import React, {Component, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import './ShapeTab.css'
-import AddTitle from './components/AddTitle';
+import AddTitle from '../components/AddTitle';
 
-import UpIcon from './icons/icon-up.png'
-import DownIcon from './icons/icon-down.png'
-import Polygon3 from './icons/icon-polygon3.png'
-import Polygon4 from './icons/icon-polygon4.png'
-import Polygon5 from './icons/icon-polygon5.png'
-import Circle from './icons/icon-circle.png'
-import Line from './icons/icon-line.png'
+import UpIcon from '../icons/icon-up.png'
+import DownIcon from '../icons/icon-down.png'
+import Polygon3 from '../icons/icon-polygon3.png'
+import Polygon4 from '../icons/icon-polygon4.png'
+import Polygon5 from '../icons/icon-polygon5.png'
+import Circle from '../icons/icon-circle.png'
+import Line from '../icons/icon-line.png'
 
 
 // Extract as a separate class later
