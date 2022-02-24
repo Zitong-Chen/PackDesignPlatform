@@ -32,7 +32,14 @@ export default class UserModel {
         this.materials = {
             type_num: 0,
             type_name: [],
-            type_urls:[],
+            type_urls:[], // accumulated nums list, each num show the start index of each type
+            urls:[],
+        }
+
+        this.prototypes = {
+            type_num: 0,
+            type_name: [],
+            type_urls:[], // accumulated nums list
             urls:[],
         }
     }
@@ -215,5 +222,39 @@ export default class UserModel {
 
     set materials_urls(new_urls) {
         this.materials.urls = new_urls;
+    }
+
+    // ===========prototypes setting============
+
+    get prototypes_types() {
+        return this.prototypes.type_num;
+    }
+
+    set prototypes_types(new_types) {
+        this.prototypes.type_num = new_types;
+    }
+
+    get prototypes_names() {
+        return this.prototypes.type_name;
+    }
+
+    set prototypes_names(new_names) {
+        this.prototypes.type_name = new_names;
+    }
+
+    get prototypes_nums() {
+        return this.prototypes.type_urls;
+    }
+
+    set prototypes_nums(new_nums) {
+        this.prototypes.type_urls = new_nums;
+    }
+
+    get prototypes_urls() {
+        return this.prototypes.urls;
+    }
+
+    set prototypes_urls(new_urls) {
+        this.prototypes.urls = new_urls;
     }
 }

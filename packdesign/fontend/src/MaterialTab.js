@@ -36,7 +36,6 @@ class MaterialTab extends Component {
             used_urls:[],
         }
 
-        console.log(this.state)
     }
 
     getMaterialsUrls = (index) => {
@@ -68,7 +67,7 @@ class MaterialTab extends Component {
         let history = this.state.used_urls;
         let new_records = [];
         new_records.push(material);
-        let max_history = 3;
+        let max_history = 4;
         for(let i = 0; i < history.length && i < max_history - 1; ++i) {
             new_records.push(history[i]);
         }

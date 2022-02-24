@@ -146,6 +146,15 @@ userModel.materials_nums = [0, 4]; // accumulated urls, nums
 userModel.materials_urls = ['static/materials/tiger/1.png','static/materials/tiger/2.png',
 'static/materials/tiger/3.png','static/materials/tiger/4.png'];
 
+userModel.prototypes_types = 2;
+userModel.prototypes_names = ["手提袋","包装盒"];
+userModel.prototypes_nums = [0, 6, 7]; // accumulated urls, nums
+userModel.prototypes_urls = ['static/prototypes/bags/1.png','static/prototypes/bags/2.png',
+'static/prototypes/bags/3.png','static/prototypes/bags/4.png','static/prototypes/bags/5.png',
+'static/prototypes/bags/6.png', 'static/prototypes/boxes/7.png'];
+
+console.log(userModel);
+
 ReactDOM.render(
   <Body model={userModel}/>,
   document.getElementById('root')

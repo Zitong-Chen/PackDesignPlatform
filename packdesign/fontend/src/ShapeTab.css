@@ -1,0 +1,157 @@
+.console-shape {
+    display: flex;
+    flex-direction: column;
+
+    /* width: 85%; */
+    margin: 15px;
+}
+
+.preset-text {
+    margin: 10px 0px 15px 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    color: white;
+}
+
+.add-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-text span{
+    color: white;
+}
+
+.text-row {
+    display: flex;
+    flex-direction: row;
+
+    width: 90%;
+    margin: 10px 0px;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text-row .add-text-button {
+    font-size: 12px;
+
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.add-shape {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-shape span{
+    color: white;
+}
+
+.shapes {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    /* margin: 5px 0px 5px 0px; */
+
+    align-items: center;
+}
+
+.shape-row {
+    display: flex;
+    flex-direction: row;
+
+    width: 90%;
+    margin: 10px 0px;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shape-row .add-shape-button {
+    font-size: 12px;
+
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* ======== For incremeent component ======== */
+
+.increment-component-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.component-icon {
+    margin: 0px 5px 0px 0px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.component-icon img {
+    width: 18px;
+    /* height: 18px; */
+
+    margin: 0px 5px;
+}
+
+.increment-component {
+    width: 50px;
+    height: 30px;
+
+    display: flex;
+    flex-direction: row;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.increment-component .component-value {
+    flex: 1;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.increment-component .component-buttons {
+    width: 15%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+}
+
+.component-buttons .increment {
+    cursor: pointer;
+
+    height: 50%;
+    width: 100%;
+
+    text-align: center;
+}
+
+.component-buttons .decrement {
+    cursor: pointer;
+
+    height: 50%;
+    width: 100%;
+
+    text-align: center;
+}
