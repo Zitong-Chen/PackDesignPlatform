@@ -9,7 +9,6 @@ body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 0px;
   height: 100%;
-
 }
 
 .page {
@@ -151,16 +150,3 @@ body {
   background-color: white;
 }
 
-.display-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
-  height: 100%;
-}
-.display-container .img-container {
-  height: 70%;
-  width: 70%;
-}

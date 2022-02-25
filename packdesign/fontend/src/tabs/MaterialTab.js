@@ -75,6 +75,8 @@ class MaterialTab extends Component {
         this.setState({
             used_urls: new_records,
         })
+
+        this.props.onAddNewMaterial(material);
     }
 
 

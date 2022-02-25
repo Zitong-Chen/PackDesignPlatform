@@ -1,10 +1,10 @@
 import React, {Component, useReducer, useState} from 'react';
 import ReactDOM, { render } from 'react-dom';
-// import Slider from 'react-native'
 import './index.css';
+
 import {VerticalOptionBtn, HorizontalOptionBtn} from './components/OptionBtn'
-import ImageContainer from './components/ImageContainer'
 import OptionTabs from './OptionTabs'
+import DisplayContainer from './containers/DisplayContainer';
 
 import MagicIcon from './icons/line-magic.png'
 import FolderIcon from './icons/folder.png'
@@ -55,54 +55,6 @@ function DisplayHeader(props) {
   );
 }
 
-/* ============ Display Container ================= */
-class DisplayContainer extends Component {
-  componentDidMount() {
-    this.props.onRef(this);
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      img_src: null,
-    }
-  }
-
-  update() {   
-    console.log('Start to render img...');
-    let xhr = new XMLHttpRequest(); 
-    let form = new FormData();
-    form.append('image', this.props.model.img_src);
-    xhr.onreadystatechange = () => {
-        // 根据服务器的响应内容格式处理响应结果
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            if(xhr.getResponseHeader('content-type')==='application/json'){
-                let data = JSON.parse(xhr.responseText);
-                let img = data.img[0];
-                let base_dir = data.base_dir;
-                console.log(base_dir+img)
-                this.setState({
-                  img_src: base_dir+img,
-                });
-            }
-        }
-        else {
-            // console.log(xhr.responseText);
-        }
-    }
-    xhr.open('POST', '/render', false);
-    xhr.send(form); 
-  }
-
-  render() {
-    return (
-      <div className='display-container' >
-          <ImageContainer img={this.state.img_src}/>
-      </div>
-    );
-  }
-}
-
 /* ============== Main Page =============== */
 class Body extends Component {
   constructor(props) {
@@ -117,18 +69,24 @@ class Body extends Component {
     this.child.update();
     console.log("Force refresh");
   }
+
+  onAddNewMaterial = (marterials_src) => {
+    this.child.addNewMaterials(marterials_src);
+    console.log("Force refresh");
+  }
   
   render() {
     return (
       <div className='page'>
         <div className='option-column'>
           <OptionHead />
-          <OptionTabs model={this.props.model} onModelChange={this.onModelChange}/>
+          <OptionTabs model={this.props.model} onModelChange={this.onModelChange} 
+          onAddNewMaterial={this.onAddNewMaterial}/>
           <OptionFooter />
         </div>
         <div className='display-column'>
           <DisplayHeader />
-          <DisplayContainer model={this.props.model} onRef={this.onRef}/>
+          <DisplayContainer model={this.props.model} onRef={this.onRef} />
         </div>
       </div>
 
