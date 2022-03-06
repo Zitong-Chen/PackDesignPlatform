@@ -76,7 +76,7 @@ class MaterialTab extends Component {
             used_urls: new_records,
         })
 
-        this.props.onAddNewMaterial(material);
+        this.props.onAddNewImgMaterial(material);
     }
 
 

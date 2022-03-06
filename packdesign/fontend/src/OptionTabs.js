@@ -106,11 +106,11 @@ class OptionTabs extends Component {
 
                 <div icon={PicIcon} label='素材' textColor='white' tabName='console-material'>
                     <MaterialTab model={this.props.model} onModelChange={this.props.onModelChange}
-                    onAddNewMaterial={this.props.onAddNewMaterial}/>
+                    onAddNewImgMaterial={this.props.onAddNewImgMaterial}/>
                 </div>
 
                 <div icon={PenIcon} label='形状' textColor='white' tabName='console-shape'>
-                    <ShapeTab />
+                    <ShapeTab onAddNewTextMaterial={this.props.onAddNewTextMaterial}/>
                 </div>
             </TabContent>
         );

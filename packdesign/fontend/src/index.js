@@ -67,12 +67,14 @@ class Body extends Component {
 
   onModelChange = () => {
     this.child.update();
-    console.log("Force refresh");
   }
 
-  onAddNewMaterial = (marterials_src) => {
-    this.child.addNewMaterials(marterials_src);
-    console.log("Force refresh");
+  onAddNewImgMaterial = (marterials_src) => {
+    this.child.addNewImgMaterial(marterials_src);
+  }
+
+  onAddNewTextMaterial = (placeholder, font_size, font_color, font_family, content) => {
+    this.child.addNewTextMaterial(placeholder, font_size, font_color, font_family, content);
   }
   
   render() {
@@ -81,7 +83,8 @@ class Body extends Component {
         <div className='option-column'>
           <OptionHead />
           <OptionTabs model={this.props.model} onModelChange={this.onModelChange} 
-          onAddNewMaterial={this.onAddNewMaterial}/>
+          onAddNewImgMaterial={this.onAddNewImgMaterial}
+          onAddNewTextMaterial={this.onAddNewTextMaterial}/>
           <OptionFooter />
         </div>
         <div className='display-column'>

@@ -109,6 +109,12 @@ class IncrementItem extends Component {
 
 
 class ShapeTab extends Component {
+
+    addNewText = (placeholder="文本", font_size="12pt", font_color="black", 
+    font_family="\"Century Gothic\", Futura, sans-serif", content="") => {
+        this.props.onAddNewTextMaterial(placeholder, font_size, font_color, font_family, content);
+    }
+
     render() {
         return (
             <div className='console-shape'>
@@ -119,9 +125,9 @@ class ShapeTab extends Component {
                 </div>
 
                 <div className='preset-text'>
-                    <AddTitle width='90%' fontsize='12pt' title='添加主标题 12pt' onClick={()=>{alert('click')}}/>
-                    <AddTitle width='90%' fontsize='10pt' title='添加副标题 10pt' onClick={()=>{alert('click')}}/>
-                    <AddTitle width='90%' fontsize='8pt' title='添加正文 8pt' onClick={()=>{alert('click')}}/>
+                    <AddTitle width='90%' fontsize='12pt' title='添加主标题 14pt' onClick={()=>this.addNewText("主标题","14pt")}/>
+                    <AddTitle width='90%' fontsize='10pt' title='添加副标题 12pt' onClick={()=>this.addNewText("标题","12pt")}/>
+                    <AddTitle width='90%' fontsize='8pt' title='添加正文 10pt' onClick={()=>this.addNewText("正文","10pt")}/>
                     
                     <div className='text-row'>
                         <IncrementItem isIconAvailable={false} width="100px">
