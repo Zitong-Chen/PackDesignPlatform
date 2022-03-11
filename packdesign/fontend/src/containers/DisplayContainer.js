@@ -1,9 +1,17 @@
-import React, {Component} from 'react'
-import ReactDOM from 'react-dom'
+import React, {Component, Suspense} from 'react'
+import ReactDOM  from 'react-dom';
+
+import { Canvas } from "@react-three/fiber";
+import { Environment, OrbitControls } from "@react-three/drei";
+import html2canvas from "html2canvas"
+
 import './DisplayContainer.css'
 
 import ImageContainer from '../components/ImageContainer'
 import EditableInput from '../components/EditableInput';
+
+import ModelPackingBag from '../mockLibrary/ModelPackingBag'
+import HDRI from '../assets/royal_esplanade_1k.hdr'
 
 // Editable Div Material
 class TextMaterial {
@@ -143,7 +151,7 @@ class DisplayContainer extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        img_src: null,
+        img_src: 'static/black.jpg',
         img_materials: [],
         text_materials:[],
         selected_material: null,
@@ -153,36 +161,40 @@ class DisplayContainer extends Component {
     }
   
     update() {   
-      console.log('Start to render img...');
-      let xhr = new XMLHttpRequest(); 
-      let form = new FormData();
-      form.append('image', this.props.model.img_src);
-      xhr.onreadystatechange = () => {
-          // 根据服务器的响应内容格式处理响应结果
-          if (xhr.readyState === 4 && xhr.status === 200) {
-              if(xhr.getResponseHeader('content-type')==='application/json'){
-                  let data = JSON.parse(xhr.responseText);
-                  let img = data.img[0];
-                  let base_dir = data.base_dir;
-                  console.log(base_dir+img)
-                  this.setState({
-                    img_src: base_dir+img,
-                  });
-              }
-          }
-          else {
-              // console.log(xhr.responseText);
-          }
-      }
-      xhr.open('POST', '/render', false);
-      xhr.send(form); 
+    //   console.log('Start to render img...');
+    //   let xhr = new XMLHttpRequest(); 
+    //   let form = new FormData();
+    //   form.append('image', this.props.model.img_src);
+    //   xhr.onreadystatechange = () => {
+    //       // 根据服务器的响应内容格式处理响应结果
+    //       if (xhr.readyState === 4 && xhr.status === 200) {
+    //           if(xhr.getResponseHeader('content-type')==='application/json'){
+    //               let data = JSON.parse(xhr.responseText);
+    //               let img = data.img[0];
+    //               let base_dir = data.base_dir;
+    //               console.log(base_dir+img)
+    //               this.setState({
+    //                 img_src: base_dir+img,
+    //               });
+    //           }
+    //       }
+    //       else {
+    //           // console.log(xhr.responseText);
+    //       }
+    //   }
+    //   xhr.open('POST', '/render', false);
+    //   xhr.send(form); 
+
+      this.setState({
+        img_src: this.props.model.img_src,
+      });
     }
 
     // New Image Materials
     addNewImgMaterial = (url) => {
         var container = document.getElementById('container');
-        let container_center_top = container.getBoundingClientRect().top +  container.getBoundingClientRect().height / 2;
-        let container_center_left = container.getBoundingClientRect().left + container.getBoundingClientRect().width / 2;
+        let container_center_top = container.getBoundingClientRect().height / 2 ;
+        let container_center_left = container.getBoundingClientRect().width / 2 ;
         
         var new_material = new MaterialInfo(url, [100,100], [container_center_left - 50, container_center_top - 50]);
         var material_history = this.state.img_materials;
@@ -196,8 +208,8 @@ class DisplayContainer extends Component {
     // New Text Material
     addNewTextMaterial = (placeholder, font_size, font_color, font_family, content) => {
         var container = document.getElementById('container');
-        let container_center_top = container.getBoundingClientRect().top +  container.getBoundingClientRect().height / 2;
-        let container_center_left = container.getBoundingClientRect().left + container.getBoundingClientRect().width / 2;
+        let container_center_top = container.getBoundingClientRect().height / 2;
+        let container_center_left = container.getBoundingClientRect().width / 2;
         let pos = [container_center_left - 10, container_center_top - 5]
         
         var new_material = new TextMaterial(pos, font_size, font_color, font_family, placeholder, content);
@@ -229,8 +241,18 @@ class DisplayContainer extends Component {
 
     handleOnMouseMove = (e) => {
         if (this.state.selected_material != null) {
-            var x = e.clientX - this.state.material_size[0] / 2;
-            var y = e.clientY - this.state.material_size[1] / 2;
+            let material_left = e.clientX - this.state.material_size[0] / 2;
+            let material_top = e.clientY - this.state.material_size[1] / 2;
+            let container = document.getElementById('container');
+            let container_top = container.getBoundingClientRect().top;
+            let container_left = container.getBoundingClientRect().left;
+
+            let x = material_left - container_left;
+            x = x >= 0 ? x : 0;
+
+            let y = material_top - container_top;
+            y = y >= 0 ? y : 0;
+
             this.state.selected_material.material_pos = [x, y];
             this.forceUpdate();
         }
@@ -239,12 +261,34 @@ class DisplayContainer extends Component {
     handleOnTextChange = new_text => {
         // Update text information
     }
+
+    handleOnSaveImage = () => {
+        html2canvas(document.querySelector("#container")).then(canvas => {
+            let url = canvas.toDataURL();
+            let a = document.createElement('a');
+            let currentTime = new Date();
+            let filename = `${currentTime.getFullYear()}_${currentTime.getMonth()}_${currentTime.getDate()}_` + 
+            `${currentTime.getHours()}_${currentTime.getMinutes()}_${currentTime.getSeconds()}`
+            a.setAttribute('href', url);
+            a.setAttribute('download', filename);
+            a.click();
+        });
+    }
   
     render() {
       return (
-        <div className='display-container'>
-            <div className='container-block' onMouseMove={this.handleOnMouseMove}>
-                <ImageContainer img={this.state.img_src} id='container'/>
+        <div className='display-container' >
+            <div className='container-block' id="container"
+            style={{ background: 'white'}} onMouseMove={this.handleOnMouseMove} >
+                {/* <div className="canvas" style={{ height:'100%', width:'100%'}}>
+                    <Canvas>
+                    <Suspense fallback={null}>
+                        <ModelPackingBag  childData={this.state.img_src}/>
+                        <OrbitControls />
+                        <Environment files={HDRI} />
+                    </Suspense>
+                    </Canvas>
+                </div> */}
                 {
                     this.state.img_materials.map((material, index) => {
                         return (
@@ -274,6 +318,9 @@ class DisplayContainer extends Component {
                     })
                 }
 
+            </div>
+            <div className='save-img-btn' onClick={this.handleOnSaveImage}>
+                <span>保存图片</span>
             </div>
         </div>
       );
