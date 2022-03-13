@@ -92,5 +92,3 @@ Some reference docs may help:
 * [React创建项目并打包到Flask后端](https://www.jianshu.com/p/b348926fa628?from=timeline@)  
 * [React+Flask打造前后端分离项目开发环境](https://www.cnblogs.com/sikongji-yeshan/p/12188076.html)  
 * [实例讲解基于Flask+React的全栈开发和部署](https://segmentfault.com/a/1190000007706773)
-
-
