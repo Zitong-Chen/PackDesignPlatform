@@ -14,9 +14,12 @@
 > They are for zitong's thesis work, you can omit them by deleting related functions.
 * pytorch (for stylished background generated)
 * cuda (for GPU using)
-* Matlab engine support (for packdesign template decision, visual clutter computation. See [this](https://ww2.mathworks.cn/help/matlab/matlab_external/get-started-with-matlab-engine-for-python.html) to learn how to install support and [this](https://ww2.mathworks.cn/help/matlab/matlab-engine-for-python.html) to know how to call matlab functions from python)
+* Matlab engine support (for packdesign template decision, visual clutter computation.)
 
 #### Setting up
+1. Setting up [virtural environment](https://docs.python.org/zh-cn/3/library/venv.html);
+2. Install requirements, including [pytorch and cuda](https://pytorch.org/);
+3. Set up Matlab engine (See [this](https://ww2.mathworks.cn/help/matlab/matlab_external/get-started-with-matlab-engine-for-python.html) to learn how to install support and [this](https://ww2.mathworks.cn/help/matlab/matlab-engine-for-python.html) to know how to call matlab functions from python);
 
 ### Fontend
 * npm
@@ -82,8 +85,12 @@ npm start
 
 ![IndexPages](./index.jpg)
 
-## Deploy
+## Deployment
 
 Have not tried yet.......  
-Some reference docs:
+Some reference docs:  
+[React创建项目并打包到Flask后端](https://www.jianshu.com/p/b348926fa628?from=timeline@)  
+[React+Flask打造前后端分离项目开发环境](https://www.cnblogs.com/sikongji-yeshan/p/12188076.html)  
+[实例讲解基于Flask+React的全栈开发和部署](https://segmentfault.com/a/1190000007706773)
+
 
