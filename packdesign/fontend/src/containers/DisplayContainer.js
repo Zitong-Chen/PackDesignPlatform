@@ -280,15 +280,15 @@ class DisplayContainer extends Component {
         <div className='display-container' >
             <div className='container-block' id="container"
             style={{ background: 'white'}} onMouseMove={this.handleOnMouseMove} >
-                {/* <div className="canvas" style={{ height:'100%', width:'100%'}}>
-                    <Canvas>
+                <div className="canvas" style={{ height:'100%', width:'100%'}}>
+                    {/* <Canvas>
                     <Suspense fallback={null}>
                         <ModelPackingBag  childData={this.state.img_src}/>
                         <OrbitControls />
                         <Environment files={HDRI} />
                     </Suspense>
-                    </Canvas>
-                </div> */}
+                    </Canvas> */}
+                </div>
                 {
                     this.state.img_materials.map((material, index) => {
                         return (
