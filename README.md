@@ -16,11 +16,21 @@
 * cuda (for GPU using)
 * Matlab engine support (for packdesign template decision, visual clutter computation. See [this](https://ww2.mathworks.cn/help/matlab/matlab_external/get-started-with-matlab-engine-for-python.html) to learn how to install support and [this](https://ww2.mathworks.cn/help/matlab/matlab-engine-for-python.html) to know how to call matlab functions from python)
 
+#### Setting up
+
 ### Fontend
 * npm
 * React
+* html2cavas
+* rc-slider
+* react-three-fiber
 
-## Setting up
+#### Setting up
+
+``` bash
+cd PATH/PackDesignPlatform/packdesign/fontend
+npm install
+```
 
 
 ## Programming in Development Enviroment
@@ -70,7 +80,7 @@ npm start
 
 4. You can see index pages as 
 
-![IndexPages](https://github.com/Zitong-Chen/PackDesignPlatform/index.jpg)
+![IndexPages](./index.jpg)
 
 ## Deploy
 
