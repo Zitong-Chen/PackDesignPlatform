@@ -20,6 +20,6 @@ def blur_image(img, percentage:float):
     return img_blur
 
 
-# img = cv2.imread('test.png', cv2.IMREAD_COLOR)
+# img = cv2.imread('test.png', cv2.IMREAD_UNCHANGED)
 # img_blur = blur_image(img, 0.05)
 # cv2.imwrite('blur.png', img_blur)

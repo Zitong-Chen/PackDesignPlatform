@@ -42,27 +42,29 @@ Under development mode, you can either implement new feature for only backend or
 
 ### (Backend) Start Flask Service
 
-1. Make sure in PackDesignPlatform directory  
+1. (If generation of background by neural models needed) Train your models or download pretrained GAN form [BaiduNetdisk](https://pan.baidu.com/s/1YRQn-VCS1OrPeYEuTXppjQ) (code: k3i6) and move mdoels to `PATH/PackDesignPlatform/packdesign/static/models/`. Make sure generators of same style are within one directory, such as `PATH/PackDesignPlatform/packdesign/static/models/style1` and `PATH/PackDesignPlatform/packdesign/static/models/style2`.
+
+2. Make sure in PackDesignPlatform directory  
 ``` bash
 cd PATH/PackDesignPlatform
 ```
 
-2. Add environment variable  
+3. Add environment variable  
 ``` bash
 export FLASK_APP=packdesign  
 export FLASK_DEV=development
 ```
 
-3. Open flask service
+4. Open flask service
 ``` bash
 flask run
 // (Then flask service will run at default port 5000. Or, you can specify port using -p parameter) 
 // flask run -p YOUR_PORT 
 ``` 
 
-4. Bowser `http://127.0.0.1:YOUR_PORT` or `localhost:YOUR_PORT`
+5. Bowser `http://127.0.0.1:YOUR_PORT` or `localhost:YOUR_PORT`
 
-5. If no error massages in your browser and but an empty html... Congrats! Flask service is running successfully since we are in development mode and fontend pages have not built in
+6. If no error massages in your browser and but an empty html... Congrats! Flask service is running successfully since we are in development mode and fontend pages have not built in
 
 
 ### (Fontend) Start React Service
