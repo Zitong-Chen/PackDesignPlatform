@@ -69,7 +69,9 @@ flask run
 
 5. Bowser `http://127.0.0.1:YOUR_PORT` or `localhost:YOUR_PORT`
 
-6. If no error massages in your browser and but an empty html... Congrats! Flask service is running successfully since we are in development mode and fontend pages have not built in
+6. If no error massages in your browser and but an empty html... Congrats! Flask service is running successfully since we are in development mode and fontend pages have not built. 
+
+7. (IMPORTANT) Remember to modify your port of `proxy` term at `PackDesignPlatform/packdesign/fontend/package.json`.
 
 
 ### (Fontend) Start React Service
