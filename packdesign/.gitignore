@@ -4,9 +4,9 @@ __pycache__
 *.pb
 
 # user-data
-static/models
-static/user_data
-static/materials
+static/models/*
+static/user_data/*
+static/materials/*
 static/fonts/*
 
 # test images

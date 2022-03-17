@@ -12,6 +12,7 @@ import './StyleTab.css'
 
 import CameraIcon from '../icons/camera.png'
 import BlackIcon from '../icons/black.jpg'
+import Loading from '../icons/loading.gif'
 
 
 // import styled from 'styled-components';
@@ -48,6 +49,9 @@ class StyleTab extends Component {
 
     generateDesign = style => {
         console.log('Start to generate style imgs...');
+        this.setState({
+            style_imgs:[Loading],
+        }); 
         let xhr = new XMLHttpRequest(); 
         xhr.onreadystatechange = () => {
             // 根据服务器的响应内容格式处理响应结果

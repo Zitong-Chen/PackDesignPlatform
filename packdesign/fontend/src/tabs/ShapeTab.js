@@ -11,6 +11,8 @@ import Polygon4 from '../icons/icon-polygon4.png'
 import Polygon5 from '../icons/icon-polygon5.png'
 import Circle from '../icons/icon-circle.png'
 import Line from '../icons/icon-line.png'
+import Pen from '../icons/icon-pen.png'
+
 
 
 // Extract as a separate class later
@@ -24,9 +26,11 @@ class IncrementItem extends Component {
         });
 
         var item_icons = [];
+        var item_click_func = [];
         if (this.props.isIconAvailable) {
             React.Children.map(this.props.children,(child, key) => {
                 item_icons.push(child.props.icon);
+                item_click_func.push(child.props.onIconClick);
             });
         }
 
@@ -39,15 +43,19 @@ class IncrementItem extends Component {
             initial_value = item_values[initial_index];
         }
 
-        console.log(item_values);
-
         this.state = {
             values_list:item_values,
             icons_list:item_icons,
+            icons_click:item_click_func,
             current_index: initial_index,
             current_value: initial_value,
             isMax: isInitialMax,
             isMin: isInitialMin,
+        }
+
+        // Initial Father Props
+        if (this.props.onValueChange) {
+            this.props.onValueChange(initial_value);
         }
     }
 
@@ -56,6 +64,9 @@ class IncrementItem extends Component {
             isMax: currentIndex == this.state.values_list.length - 1? true : false,
             isMin: currentIndex == 0 ? true : false,
         })
+        if (this.props.onValueChange) {
+            this.props.onValueChange(this.state.values_list[currentIndex])
+        }
     }
 
     handleOnIncrement = () => {
@@ -83,7 +94,9 @@ class IncrementItem extends Component {
             <div className='increment-component-block'>
                 {   this.props.isIconAvailable &&
                     <div className='component-icon'>
-                        <img src={this.state.icons_list[this.state.current_index]}/>
+                        <img src={this.state.icons_list[this.state.current_index]} 
+                        onClick={this.state.icons_click[this.state.current_index]}
+                        style={{cursor:"pointer"}}/>
                     </div>
                 }
 
@@ -109,10 +122,35 @@ class IncrementItem extends Component {
 
 
 class ShapeTab extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            // for customize fonts
+            font_family: "",
+            font_size: "",
+            // font_color: "", // TODO: update later
+        }
+    }
+
+    OnHandleFontFamilySelectionChange = (new_family) =>{
+        this.setState({
+            font_family: new_family,
+        });
+    }
+
+    OnHandleFontSizeSelectionChange = (new_size) =>{
+        this.setState({
+            font_size: new_size,
+        });
+    }
 
     addNewText = (placeholder="文本", font_size="12pt", font_color="black", 
     font_family="\"Century Gothic\", Futura, sans-serif", content="") => {
         this.props.onAddNewTextMaterial(placeholder, font_size, font_color, font_family, content);
+    }
+
+    onSomethingClick = () => {
+        alert("Click Event")
     }
 
     render() {
@@ -130,18 +168,26 @@ class ShapeTab extends Component {
                     <AddTitle width='90%' fontsize='8pt' title='添加正文 10pt' onClick={()=>this.addNewText("正文","10pt")}/>
                     
                     <div className='text-row'>
-                        <IncrementItem isIconAvailable={false} width="100px">
+                        <IncrementItem isIconAvailable={false} width="100px" 
+                        onValueChange={this.OnHandleFontFamilySelectionChange}>
+                            {/* 需要在index.css中添加font-face, assets中添加字体资源 */}
                             <div icon={Line} value='字体1' />
                             <div icon={Line} value='字体2' />
                             <div icon={Line} value='字体3' />
                         </IncrementItem>
 
-                        <IncrementItem isIconAvailable={false} width="60px">
+                        <IncrementItem isIconAvailable={false} width="60px"
+                        onValueChange={this.OnHandleFontSizeSelectionChange}>
                             <div icon={Line} value='10pt' />
                             <div icon={Line} value='11pt' />
                             <div icon={Line} value='12pt' />
+                            <div icon={Line} value='13pt' />
+                            <div icon={Line} value='14pt' />
+                            <div icon={Line} value='15pt' />
+                            <div icon={Line} value='16pt' />
                         </IncrementItem>
-                        <span className='add-text-button' onClick={()=>{alert("click")}}>新增</span>
+                        <span className='add-text-button' 
+                        onClick={()=>this.addNewText("正文",this.state.font_size,"black",this.state.font_family)}>新增</span>
                     </div>
 
                 </div>
@@ -158,14 +204,16 @@ class ShapeTab extends Component {
                     <div className='shapes'>
                         <div className='shape-row'>
                             <IncrementItem isIconAvailable={true}>
-                                <div icon={Polygon3} value='3' />
-                                <div icon={Polygon4} value='4' />
-                                <div icon={Polygon5} value='5' />
+                                <div icon={Polygon3} value='3边' onIconClick={this.onSomethingClick}/>
+                                <div icon={Polygon4} value='4边' onIconClick={()=>{alert("click4")}}/>
+                                <div icon={Polygon5} value='5边' onIconClick={()=>{alert("click5")}}/>
                             </IncrementItem>
-                            <span className='add-shape-button' onClick={()=>{alert("click")}}>新增</span>
+                            <img src={Circle} onClick={this.onSomethingClick} />
+                            <img src={Line} onClick={this.onSomethingClick}/>
+                            <img src={Pen} onClick={this.onSomethingClick}/>
                         </div>
 
-                        <div className='shape-row'>
+                        {/* <div className='shape-row'>
                             <IncrementItem isIconAvailable={true}>
                                 <div icon={Circle} value='3' />
                                 <div icon={Circle} value='4' />
@@ -181,7 +229,7 @@ class ShapeTab extends Component {
                                 <div icon={Line} value='5' />
                             </IncrementItem>
                             <span className='add-shape-button' onClick={()=>{alert("click")}}>新增</span>
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>

@@ -151,3 +151,13 @@ body {
 }
 
 
+/* Fonts */
+@font-face {
+  font-family: '字体1';
+  src: url('./assets/Colors\ Of\ Autumn.ttf');
+}
+
+@font-face {
+  font-family: '字体2';
+  src: url('./assets/League\ Gothic.otf');
+}

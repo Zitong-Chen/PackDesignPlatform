@@ -26,6 +26,8 @@ class TextMaterial {
         this.content = "";
         this.placeholder = placeholder;
         this.isSelected = false;
+
+        
     }
 
     get material_pos() {
@@ -312,6 +314,8 @@ class DisplayContainer extends Component {
                             left={material.material_pos[0]}
                             top={material.material_pos[1]}
                             fontSize={material.font_size}
+                            fontFamily={material.font_family}
+                            fontColor={material.font_color}
                             onValueChange={this.handleOnTextChange}
                             onClick={(e) => this.handleOnMaterialClick(material, e)}/>
                         );

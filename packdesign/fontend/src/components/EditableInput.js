@@ -30,10 +30,12 @@ class EditableInput extends Component {
 
     render() {
         return (
-            <div key={this.props.key} className="edit-input" 
+            <div key={this.props.key} 
+            className="edit-input" 
             contentEditable={this.state.editable} 
             placeholder={this.props.placeholder}
-            style={{left:this.props.left, top:this.props.top,fontSize:this.props.fontSize}}
+            style={{left:this.props.left, top:this.props.top,fontSize:this.props.fontSize,
+            fontFamily:this.props.fontFamily, color:this.fontColor}}
             onClick={this.props.onClick}
             onDoubleClick={this.handleOnDoubleClick}
             onBlur={this.handleOnBlur}>

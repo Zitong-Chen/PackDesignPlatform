@@ -83,6 +83,12 @@
     cursor: pointer;
 }
 
+.shape-row img {
+    width: 18px;
+
+    cursor: pointer;
+}
+
 /* ======== For incremeent component ======== */
 
 .increment-component-block {
