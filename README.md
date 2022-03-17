@@ -20,6 +20,11 @@
 1. Setting up [virtural environment](https://docs.python.org/zh-cn/3/library/venv.html);
 2. Install requirements, including [pytorch and cuda](https://pytorch.org/);
 3. Set up Matlab engine (See [this](https://ww2.mathworks.cn/help/matlab/matlab_external/get-started-with-matlab-engine-for-python.html) to learn how to install support and [this](https://ww2.mathworks.cn/help/matlab/matlab-engine-for-python.html) to know how to call matlab functions from python);
+4. Install requirements:
+    ```
+    conda install --yes --file requirements.txt
+    // pip install -r requirements.txt
+    ```
 
 ### Fontend
 * npm
