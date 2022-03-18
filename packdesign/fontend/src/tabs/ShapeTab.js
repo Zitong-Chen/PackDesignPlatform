@@ -158,7 +158,7 @@ class ShapeTab extends Component {
             <div className='console-shape'>
                 <div className='add-text'>
                     <div style={{display: 'flex', flexDirection:'row', justifyContent:'space-between', alignContent:'center'}}>
-                        <span>添加文字</span>
+                        <span>添加文字(双击修改)</span>
                     </div>
                 </div>
 

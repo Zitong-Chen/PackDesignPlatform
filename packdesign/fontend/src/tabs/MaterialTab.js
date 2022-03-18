@@ -113,7 +113,7 @@ class MaterialTab extends Component {
                     <div className='used-result'>
                     {this.state.used_urls.map((materials, index) => {
                             return <ImageBlock key={index} img={materials} title={'最近使用'+(index+1)} 
-                            prompt='最近使用素材' onClick={() => {}}/>
+                            prompt='最近使用素材' onClick={() => this.handleOnMaterialsClick(materials)}/>
                         })}
                     </div>
                 </div>

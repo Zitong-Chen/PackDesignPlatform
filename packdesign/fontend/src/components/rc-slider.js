@@ -22,7 +22,7 @@ export default class ControlSlider extends Component {
 
   render() {
     return (
-      <div className='control-slider' style={{color:this.props.color}}>
+      <div className='control-slider' style={{color:this.props.color, width:this.props.width?this.props.width:'100%'}}>
         {this.props.title && <span className='slider-title'>{this.props.title}</span>}
         <Slider className='slider-bar' 
         min={this.props.min} 

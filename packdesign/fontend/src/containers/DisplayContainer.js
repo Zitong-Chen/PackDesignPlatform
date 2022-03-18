@@ -158,6 +158,7 @@ class DisplayContainer extends Component {
         text_materials:[],
         selected_material: null,
         material_size: null,
+        material_drag: false,
 
       }
     }
@@ -223,17 +224,9 @@ class DisplayContainer extends Component {
         })
     }
 
-    handleOnMaterialClick = (material, e) => {
-        console.log(e.target.getBoundingClientRect())
-        if (this.state.selected_material == null) {
-            material.is_selected = true;
-            this.setState({
-                selected_material: material,
-                material_size: [e.currentTarget.getBoundingClientRect().width, 
-                    e.currentTarget.getBoundingClientRect().height],
-            })
-        } else if (this.state.selected_material === material) {
-            material.is_selected = false;
+    handleOnContainerClick = (e) => {
+        if (this.state.selected_material != null) {
+            this.state.selected_material.is_selected = false;
             this.setState({
                 selected_material: null,
                 material_size: null,
@@ -241,8 +234,37 @@ class DisplayContainer extends Component {
         }
     }
 
-    handleOnMouseMove = (e) => {
+    handleOnMaterialMouseDown = (material, e) => {
         if (this.state.selected_material != null) {
+            this.state.selected_material.is_selected = false;
+        }
+        material.is_selected = true;
+        this.setState({
+            selected_material: material,
+            material_size: [e.currentTarget.getBoundingClientRect().width, 
+                e.currentTarget.getBoundingClientRect().height],
+            material_drag: true,
+        })
+        e.stopPropagation();
+    }
+
+    handleOnMaterialMouseUp = (e) =>{
+        if (this.state.selected_material != null) {
+            this.setState({
+                material_drag: false,
+            })
+        }
+        e.stopPropagation();
+    }
+
+    handelOnMaterialClick = (e) => {
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
+    }
+
+
+    handleOnMouseMove = (e) => {
+        if (this.state.selected_material != null && this.state.material_drag) {
             let material_left = e.clientX - this.state.material_size[0] / 2;
             let material_top = e.clientY - this.state.material_size[1] / 2;
             let container = document.getElementById('container');
@@ -281,7 +303,8 @@ class DisplayContainer extends Component {
       return (
         <div className='display-container' >
             <div className='container-block' id="container"
-            style={{ background: 'white'}} onMouseMove={this.handleOnMouseMove} >
+            style={{ background: 'white'}} onMouseMove={this.handleOnMouseMove} 
+            onClick={this.handleOnContainerClick}>
                 <div className="canvas" style={{ height:'100%', width:'100%'}}>
                     {/* <Canvas>
                     <Suspense fallback={null}>
@@ -300,8 +323,12 @@ class DisplayContainer extends Component {
                                 style={{position:'absolute', width:'100px',height:'100px',
                                 left:material.material_pos[0],
                                 top:material.material_pos[1],
-                                border:material.is_selected ? '1px dashed gray' : ''}} 
-                                onClick={(e) => this.handleOnMaterialClick(material, e)}/>
+                                border:material.is_selected ? '1px dashed gray' : '',
+                                cursor: this.state.material_drag ? 'move' : 'default',}} 
+                                // onClick={(e) => this.handleOnMaterialClick(material, e)}
+                                onMouseDown = {(e) => this.handleOnMaterialMouseDown(material, e)}
+                                onMouseUp={this.handleOnMaterialMouseUp}
+                                onClick={this.handelOnMaterialClick}/>
                             </div>
                         );
                     })
@@ -317,7 +344,10 @@ class DisplayContainer extends Component {
                             fontFamily={material.font_family}
                             fontColor={material.font_color}
                             onValueChange={this.handleOnTextChange}
-                            onClick={(e) => this.handleOnMaterialClick(material, e)}/>
+                            onMouseDown = {(e) => this.handleOnMaterialMouseDown(material, e)}
+                            onMouseUp={this.handleOnMaterialMouseUp}
+                            onClick={this.handelOnMaterialClick}
+                            is_drag={this.state.material_drag}/>
                         );
                     })
                 }

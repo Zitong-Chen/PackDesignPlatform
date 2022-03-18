@@ -1,11 +1,6 @@
 import React, {Component, useState} from 'react';
 import PropTypes from 'prop-types';
 
-// import Slider, {Range} from 'rc-slider'
-// import 'rc-slider/assets/index.css';
-
-import ControlSlider from '../components/rc-slider';
-
 import ImageBlock from '../components/ImageBlock';
 import UploadComponent from '../components/UploadComponent';
 import './StyleTab.css'
@@ -13,6 +8,7 @@ import './StyleTab.css'
 import CameraIcon from '../icons/camera.png'
 import BlackIcon from '../icons/black.jpg'
 import Loading from '../icons/loading.gif'
+import EditPane from '../components/EditPane';
 
 
 // import styled from 'styled-components';
@@ -172,16 +168,8 @@ class StyleTab extends Component {
                             }
                         </div>
                     </div>
-                    <div style={{width:'100%',
-                    height:'1px',
-                    backgroundColor:'rgba(255,255,255,0.3)',
-                    marginBottom:"25px"}}></div>
-                    <span style={{color:'white'}}>风格细调</span>
-                    <div className='style-adjust'>
-                        <ControlSlider min={0} max={100} color='white' title='模糊' percentage={true}/>
-                        <ControlSlider min={0} max={100} color='white' title='抽象' percentage={true}/>
-                        <ControlSlider min={0} max={100} color='white' title='颗粒大小' percentage={true}/>
-                        <ControlSlider min={0} max={100} color='white' title='透明' percentage={true}/>
+                    <div>
+                        <EditPane />
                     </div>
                 </div>
             </div>

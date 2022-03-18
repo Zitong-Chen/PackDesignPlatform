@@ -35,8 +35,10 @@ class EditableInput extends Component {
             contentEditable={this.state.editable} 
             placeholder={this.props.placeholder}
             style={{left:this.props.left, top:this.props.top,fontSize:this.props.fontSize,
-            fontFamily:this.props.fontFamily, color:this.fontColor}}
+            fontFamily:this.props.fontFamily, color:this.fontColor, cursor:this.props.is_drag?'move':'default'}}
             onClick={this.props.onClick}
+            onMouseDown={this.props.onMouseDown}
+            onMouseUp={this.props.onMouseUp}
             onDoubleClick={this.handleOnDoubleClick}
             onBlur={this.handleOnBlur}>
             </div>
